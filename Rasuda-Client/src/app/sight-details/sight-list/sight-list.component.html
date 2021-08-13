@@ -1,0 +1,69 @@
+<div style="display: flex;" class="buttondiv">
+<button type="button" class="btn btn-primary float-right m-2 add-button" 
+data-toggle="modal" data-target="#sightModal"
+(click)="addClick()"
+data-backdrop="static" data-keyboard="false">
+<i class="fa fa-plus"></i>
+    Add new sight
+  </button>
+
+  <input [(ngModel)]="SightFilter" class="form-control searchbox"
+                (keyup)="FilterFn()" placeholder="Search by Make, Model, Registration">
+              </div>
+
+  
+  <div class="modal fade" id="sightModal" tabindex="-1" aria-labelledby="sightModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="sightModalLabel">{{ModalTitle}}</h5>
+          <button type="button" class="close" 
+          data-dismiss="modal" aria-label="Close"
+          (click)="closeClick()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <app-add-edit-sight [sight]="sight" *ngIf="ActivateAddEditSight"></app-add-edit-sight>
+        </div>        
+      </div>
+    </div>
+  </div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+              
+              Make</th>
+            <th>Model</th>
+            <th>Registration</th>
+            <th>Location</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let dataItem of SightDetailsList">
+            <td>{{dataItem.Make}}</td>
+            <td>{{dataItem.Model}}</td>
+            <td>{{dataItem.Registration}}</td>
+            <td>{{dataItem.Location}}</td>
+            <td>{{dataItem.SightDate | date: 'dd/MM/yyyy'}}</td>
+            <td>{{dataItem.SightDate | date:'shortTime'}}</td>
+            <td>
+                <button type="button" class="btn btn-light mr-1 editbutton"
+                data-toggle="modal" data-target="#sightModal"
+(click)="editClick(dataItem)"
+data-backdrop="static" data-keyboard="false">
+<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="btn btn-light mr-1 deletebutton"
+                (click)="deleteClick(dataItem)">
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

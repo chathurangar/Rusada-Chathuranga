@@ -1,0 +1,77 @@
+<div class="d-flex flex-row bd-highlight mb-3">
+    <div style="width: 60%;">
+<form #form="ngForm">
+    <div class="form-group row" style="width: 90%;">
+        <label class="col-sm-3 col-form-label">Make</label>
+        <div class="col-sm-9 inputDiv">
+            <input type="text" id="Make" name="Make" class="form-control" [(ngModel)]="Make" 
+            required maxlength="12" #makeval="ngModel"
+            placeholder="Enter Make">
+            <div *ngIf="makeval.invalid && (makeval.dirty || makeval.touched)" class="alertposition">
+            <div *ngIf="makeval.errors?.required">Make is required.</div>
+            </div>
+        </div>
+    
+        <label class="col-sm-3 col-form-label">Model</label>
+        <div class="col-sm-9 inputDiv">
+            <input type="text" id="Model" name="Model" class="form-control" [(ngModel)]="Model"
+            required maxlength="12" #modelval="ngModel"
+            placeholder="Enter Model">
+            <div *ngIf="modelval.invalid && (modelval.dirty || modelval.touched)" class="alertposition">
+
+                <div *ngIf="modelval.errors?.required">Model is required.</div>
+                </div>
+        </div>
+
+        <label class="col-sm-3 col-form-label">Registration</label>
+        <div class="col-sm-9 inputDiv">
+            <input type="text" id="Registration" name="Registration" class="form-control" [(ngModel)]="Registration"
+            required maxlength="8" #registrationval="ngModel" pattern="^[a-zA-Z]{1,2}-[a-zA-Z]{1,5}$"
+            placeholder="Enter Registration">
+            <div *ngIf="registrationval.invalid && (registrationval.dirty || registrationval.touched)" class="alertposition">
+                <div *ngIf="registrationval.errors?.required">Registration is required.</div>
+                <div *ngIf="registrationval.errors?.pattern">Registration should match the pattern.</div>
+            </div>
+        </div>
+
+        <label class="col-sm-3 col-form-label">Location</label>
+        <div class="col-sm-9 inputDiv">
+            <input type="text" id="Location" name="Location" class="form-control" [(ngModel)]="Location"
+            required maxlength="20" #locationnval="ngModel" 
+            placeholder="Enter Location">
+            <div *ngIf="locationnval.invalid && (locationnval.dirty || locationnval.touched)" class="alertposition">
+                <div *ngIf="locationnval.errors?.required">Location is required.</div>
+            </div>
+        </div>
+
+        <label class="col-sm-3 col-form-label">Date</label>
+        <div class="col-sm-9 inputDiv dateinput">
+            <input type="date" name="SightDate" class="form-control" [(ngModel)]="SightDate">
+        </div>
+
+        <label class="col-sm-3 col-form-label timelabel">Time</label>
+        <div class="col-sm-9 inputDiv timeDiv">
+            <ngb-timepicker name="spinner" [(ngModel)]="time" [spinners]="spinners"></ngb-timepicker>
+        </div>     
+           
+            <div class="col-sm-9" style="margin-left: 25%;">
+                <button (click)="addSight()" *ngIf="sight.Id==0" class="btn btn-primary addupdbutton" type="submit" [disabled]="form.invalid">
+                    <i class="fa fa-floppy-o"></i> Add
+                </button>
+                
+                <button (click)="updateSight()" *ngIf="sight.Id!=0" class="btn btn-primary addupdbutton" type="submit" [disabled]="form.invalid">
+                    <i class="fa fa-floppy-o"></i> Update
+                </button>
+            </div>
+        
+    </div>
+</form>
+</div>
+    <div class="ml-3 bd-highlight" style="width: 40%;">
+        <img [src]=PhotoFilePath height="275px;" width="330px;"><br>
+        <input type="file" (change)="uploadPhoto($event)" class="btn btn-info photobutton" />
+    </div>
+    </div>
+    
+
+    

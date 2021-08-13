@@ -1,0 +1,103 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.navbarcust{
+    background-color: #007bff !important;
+    color: #fff;
+    font-size: 45px;
+    height: 80px;
+}
+
+.navbar-title{
+    font-size: 25px !important;
+    margin-top: 22px !important;
+    margin-left: 20px !important;
+}
+
+.searchbox{
+    max-width: 400px;
+    margin-left: 560px;
+    margin-top: 10px;
+}
+
+.add-button{
+    min-width: 200px;
+}
+
+.buttondiv{
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+tr{
+    background-color: azure;
+}
+
+th{
+    background-color: silver;
+}
+
+.alertposition{
+    color: red;
+    position: absolute !important;
+}
+
+.inputDiv{
+    margin-bottom: 22px;
+}
+
+.btn-secondary {
+    margin-left: 8px;
+}
+
+.photobutton{
+    width: 330px;
+}
+
+.modal-dialog{
+    max-width: 1000px !important;
+}
+
+.modal-title{
+    font-size: 20px !important;
+}
+
+.modal-content{
+    height: 550px;
+}
+
+.col-form-label{
+    font-size: 15px;
+    padding-left: 20px;
+}
+
+.editbutton{
+    background-color: yellowgreen;
+}
+
+.deletebutton{
+    background-color: lightcoral;
+}
+
+.dateinput{
+    margin-bottom: 0px !important;
+}
+
+.timelabel{
+    margin-top: 36px !important;
+}
+
+.addupdbutton{
+    width: 145px;
+}
+
+button:focus {
+    outline:none;
+    box-shadow: none !important;
+}
+
+.timeDiv{
+    margin-bottom: 10px;
+}
