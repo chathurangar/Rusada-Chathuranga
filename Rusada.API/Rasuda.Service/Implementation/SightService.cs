@@ -49,8 +49,15 @@ namespace Rusada.Service.Implementation
 
         public async Task<bool> DeleteSight(int Id)
         {
-            await _unitofWork.SightRepository.DeleteSight(Id);
-            return await _unitofWork.Complete();
+            bool result = await _unitofWork.SightRepository.DeleteSight(Id);
+            if (result)
+            {
+                return await _unitofWork.Complete();
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
