@@ -48,7 +48,7 @@ export class SightListComponent implements OnInit {
   deleteClick(item){
     if (confirm('Are you sure you want to delete this record?')){
        this.service.deleteSight(item.Id).subscribe(res=>{
-        if(res > 0){
+        if(res){
           this.toastr.success('Sighting deleted successfully.');
         } else {
           this.toastr.error('Error occured while deleting data.');

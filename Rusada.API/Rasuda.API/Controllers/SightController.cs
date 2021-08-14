@@ -34,9 +34,9 @@ namespace Rasuda.API.Controllers
 
         [HttpPost]
         [Route("InsertSight")]
-        public async Task<int> Post(SightDetailsDto sight)
+        public async Task<bool> Post(SightDetailsDto sight)
         {
-            return await _sightService.InsertSight(sight);
+            return await _sightService.AddUpdateSight(sight);
         }
 
         [HttpGet]
@@ -50,7 +50,7 @@ namespace Rasuda.API.Controllers
         [Route("UpdateSight")]
         public async Task<bool> Put(SightDetailsDto sight)
         {
-            return await _sightService.UpdateSight(sight);
+            return await _sightService.AddUpdateSight(sight);
         }
 
         [HttpDelete]

@@ -10,10 +10,8 @@ namespace Rusada.Service.Interface
     public interface ISightService
     {
         Task<List<SightDetailsDto>> GetAllSightDetails();
-        Task<int> InsertSight(SightDetailsDto sight);
         Task<SightDetailsDto> GetSightById(int Id);
-        Task<bool> UpdateSight(SightDetailsDto sight);
+        Task<bool> AddUpdateSight(SightDetailsDto sight);
         Task<bool> DeleteSight(int Id);
-
     }
 }

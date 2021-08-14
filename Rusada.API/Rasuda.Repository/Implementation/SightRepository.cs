@@ -32,47 +32,49 @@ namespace Rusada.Repository.Implementation
             return await _context.SightDetails.FindAsync(Id);
         }
 
-        public async Task<int> InsertSight(SightDetails sight)
-        {
-            sight.Created = DateTime.Now;
-            sight.CreatedBy = UserConstants.userId;
-            _context.SightDetails.Add(sight);
-            await _context.SaveChangesAsync();
-            return sight.Id;
-        }
 
-        public async Task<bool> UpdateSight(SightDetails sight)
+        public async Task<bool> AddUpdateSight(SightDetails sight)
         {
-            //var sightEntity = await _context.SightDetails.FindAsync(sight.Id);
-            var sightEntity = await _context.SightDetails.FirstOrDefaultAsync<SightDetails>(x => x.Id == sight.Id && x.RowVersion == sight.RowVersion);
-
-            if (sightEntity == null)
+            if (sight.Id == 0)
             {
-                return false;
+                sight.Created = DateTime.Now;
+                sight.CreatedBy = UserConstants.userId;
+                await _context.SightDetails.AddAsync(sight);
+                return true;
             }
+            else
+            {
+                var sightEntity = await _context.SightDetails.FirstOrDefaultAsync<SightDetails>(x => x.Id == sight.Id && x.RowVersion == sight.RowVersion);
 
-            sightEntity.Make = sight.Make;
-            sightEntity.Model = sight.Model;
-            sightEntity.Registration = sight.Registration;
-            sightEntity.Location = sight.Location;
-            sightEntity.SightDate = sight.SightDate;
-            sightEntity.PhotoFileName = sight.PhotoFileName;
-            sightEntity.Modified = DateTime.Now;
-            sightEntity.ModifiedBy = UserConstants.userId;
+                if (sightEntity == null)
+                {
+                    return false;
+                }
 
-            return await _context.SaveChangesAsync() > 0;
+                sightEntity.Make = sight.Make;
+                sightEntity.Model = sight.Model;
+                sightEntity.Registration = sight.Registration;
+                sightEntity.Location = sight.Location;
+                sightEntity.SightDate = sight.SightDate;
+                sightEntity.PhotoFileName = sight.PhotoFileName;
+                sightEntity.Modified = DateTime.Now;
+                sightEntity.ModifiedBy = UserConstants.userId;
+
+                return true;
+            }
         }
 
         public async Task<bool> DeleteSight(int Id)
         {
             var sightEntity = await _context.SightDetails.FindAsync(Id);
 
-            if(sightEntity == null)
+            if (sightEntity == null)
             {
                 return false;
             }
             _context.SightDetails.Remove(sightEntity);
-            return await _context.SaveChangesAsync() > 0;
+            return true;
         }
+
     }
 }

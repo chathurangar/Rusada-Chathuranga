@@ -11,9 +11,8 @@ namespace Rusada.Repository.Interface
     public interface ISightRepository
     {
         Task<List<SightDetails>> GetAllSightDetails();
-        Task<int> InsertSight(SightDetails sight);
+        Task<bool> AddUpdateSight(SightDetails sight);
         Task<SightDetails> GetSightById(int Id);
-        Task<bool> UpdateSight(SightDetails sight);
         Task<bool> DeleteSight(int Id);
     }
 }

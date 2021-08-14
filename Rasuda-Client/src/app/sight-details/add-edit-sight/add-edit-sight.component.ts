@@ -72,7 +72,7 @@ export class AddEditSightComponent implements OnInit {
     PhotoFileName: this.PhotoFileName};
 
     this.service.addSight(val).subscribe(res=>{
-      if(res > 0){
+      if(res){
         this.toastr.success('New sighting added successfully.');
       } else {
         this.toastr.error('Error occured while saving data.');

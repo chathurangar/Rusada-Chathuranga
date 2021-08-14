@@ -43,7 +43,7 @@ namespace Rusada.API
 
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
-            services.AddTransient<ISightRepository, SightRepository>();
+            services.AddTransient<IUnitofWork, UnitofWork>();
             services.AddTransient<ISightService, SightService>();
 
             //Enable CORS
